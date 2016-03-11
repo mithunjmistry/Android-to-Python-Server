@@ -1,0 +1,51 @@
+import socket
+import time
+
+serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+#host = socket.gethostname()
+host = "192.168.1.100"
+port = 6000
+serversocket.bind((host,port))
+
+serversocket.listen(5)
+
+while True:
+    clientsocket, addr = serversocket.accept()
+    print("Got a connection from %s" % str(addr))
+    
+    while 1:
+        data3 = clientsocket.recv(1024)
+        data4 = data3.strip()
+        if data4 == "gettemp":
+            print "the data has arrived"
+            clientsocket.send("27.5") #send data string of you wish to see on the app
+            break
+        elif data4 == "ledone":
+            print "LED-1 on"
+	    #do which ever pin you want to switch or any action you want
+            break
+        elif data4 == "ledtwo":
+            print "LED-2 on"
+	    #do which ever pin you want to switch or any action you want
+            break
+        elif data4 == "ledthree":
+            print "LED-3 on"
+	    #do which ever pin you want to switch or any action you want
+            break
+        elif data4 == "oledone":
+            print "LED-1 off"
+	    #do which ever pin you want to switch or any action you want
+            break
+        elif data4 == "oledtwo":
+            print "LED-2 off"
+	    #do which ever pin you want to switch or any action you want
+            break
+        elif data4 == "oledthree":
+            print "LED-3 off"
+	    #do which ever pin you want to switch or any action you want
+            break
+        else:
+            break
+        if data4 == "stop":
+            break
